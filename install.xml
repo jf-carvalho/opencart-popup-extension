@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+    <name>Popup</name>
+    <version>1.3.22</version>
+    <code>jf_popup</code>
+    <author>JF Carvalho</author>
+    <link>https://orions.com.br</link>
+
+    <file path="admin/view/template/setting/setting.twig">   
+       
+        <operation>
+            <search><![CDATA[<li><a href="#tab-store" data-toggle="tab">{{ tab_store }}</a></li>]]></search>
+            <add position="after"><![CDATA[<li><a href="#tab-popup" data-toggle="tab">PopUp</a></li>]]>
+            </add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[<div class="tab-pane" id="tab-local">]]></search>
+            <add position="before"><![CDATA[
+                <div class="tab-pane" id="tab-popup">
+
+                  <div class="col-sm-12">
+                    <h3>
+                      Geral
+                    </h3>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="popup_name">
+                      Nome do PopUp
+                    </label>
+                    <div class="col-sm-10">
+                      <input type="text" name="config_popup_name" id="popup_name" class="form-control" value="{{ config_popup_name }}" placeholder="ex.: Verificação de maioridade">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="Ao ativar esta opção, o popup configurado será exibido para o usuário sempre que acessar o site.">Ativar</span></label>
+                    <div class="col-sm-10">
+                      <div class="checkbox">
+                          <input type="checkbox" name="config_popup_enabled" {{ config_popup_enabled == 'on' ? 'checked' : '' }} />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="popup_interval">
+                      Intervalo entre exibições (minutos)
+                    </label>
+                    <div class="col-sm-10">
+                      <input type="text" name="config_popup_interval" id="popup_interval" class="form-control" value="{{config_popup_interval}}" placeholder="ex.: 60">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-popup_image">Imagem</label>
+                    <div class="col-sm-10">
+                      <a href="" id="thumb-popup_image" data-toggle="image" class="img-thumbnail">
+                        <img src="{{ popup_image }}" alt="" title="" data-placeholder="{{ placeholder }}" />
+                      </a>
+                      <input type="hidden" name="config_popup_image" value="{{ config_popup_image }}" id="input-popup_image" />
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="popup_width">
+                      Largura da imagem (px)
+                    </label>
+                    <div class="col-sm-10">
+                      <input type="text" name="config_popup_width" id="popup_width" class="form-control" value="{{ config_popup_width }}" placeholder="ex.: 720">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="popup_height">
+                      Altura da imagem (px)
+                    </label>
+                    <div class="col-sm-10">
+                      <input type="text" name="config_popup_height" id="popup_height" class="form-control" value="{{ config_popup_height }}" placeholder="ex.: 640">
+                    </div>
+                  </div>
+
+                  <hr>
+                  <div class="col-sm-12">
+                    <h3>
+                      Botão primário
+                    </h3>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="Ao ativar esta opção, o popup exibirá um botão que, ao ser clicado, fecha o popup e permite acesso livre ao site. Após o tempo informado no campo 'intervalo', o popup será exibido novamente para o usuário.""></span></label>
+                    <div class="col-sm-10">
+                      <div class="checkbox">
+                          <input type="checkbox" name="config_popup_show_primary_btn" {{ config_popup_show_primary_btn == 'on' ? 'checked' : '' }} />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="popup_primary_btn_bg">
+                      Cor de fundo do botão primário
+                      <span data-toggle="tooltip" title="Caso em branco, o valor padrão será usado (#32a852)"></span>
+                    </label>
+                    <div class="col-sm-10">
+                      <input type="text" name="config_popup_primary_btn_bg" id="popup_primary_btn_bg" class="form-control" value="{{ config_popup_primary_btn_bg }}" placeholder="ex.: green ou #32a852">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="popup_primary_btn_color">
+                      Cor da fonte do botão primário
+                      <span data-toggle="tooltip" title="Caso em branco, o valor padrão será usado (#fff)"></span>
+                    </label>
+                    <div class="col-sm-10">
+                      <input type="text" name="config_popup_primary_btn_color" id="popup_primary_btn_color" class="form-control" value="{{ config_popup_primary_btn_color }}" placeholder="ex.: white ou #fff">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="popup_primary_btn_text">
+                      Texto do botão primário
+                      <span data-toggle="tooltip" title="Caso em branco, o valor padrão será usado (SIM)"></span>
+                    </label>
+                    <div class="col-sm-10">
+                      <input type="text" name="config_popup_primary_btn_text" id="popup_primary_btn_text" class="form-control" value="{{ config_popup_primary_btn_text }}" placeholder="ex.: Sim">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="popup_primary_btn_width">
+                      Largura do botão primário (px)
+                      <span data-toggle="tooltip" title="Caso em branco, o valor padrão será usado (144px)"></span>
+                    </label>
+                    <div class="col-sm-10">
+                      <input type="text" name="config_popup_primary_btn_width" id="popup_primary_btn_width" class="form-control" value="{{ config_popup_primary_btn_width }}" placeholder="ex.: 200">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="popup_primary_btn_height">
+                      Altura do botão primário (px)
+                      <span data-toggle="tooltip" title="Caso em branco, o valor padrão será usado (60px)"></span>
+                    </label>
+                    <div class="col-sm-10">
+                      <input type="text" name="config_popup_primary_btn_height" id="popup_primary_btn_height" class="form-control" value="{{ config_popup_primary_btn_height }}" placeholder="ex.: 100">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="popup_primary_btn_border_radius">
+                      Arredondamento das bordas do botão primário (px)
+                      <span data-toggle="tooltip" title="Caso em branco, o valor padrão será usado (0px)"></span>
+                    </label>
+                    <div class="col-sm-10">
+                      <input type="text" name="config_popup_primary_btn_border_radius" id="popup_primary_btn_border_radius" class="form-control" value="{{ config_popup_primary_btn_border_radius }}" placeholder="ex.: 5">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="popup_primary_btn_font_size">
+                      Tamanho da fonte do botão primário (px)
+                      <span data-toggle="tooltip" title="Caso em branco, o valor padrão será usado (24px)"></span>
+                    </label>
+                    <div class="col-sm-10">
+                      <input type="text" name="config_popup_primary_btn_font_size" id="popup_primary_btn_font_size" class="form-control" value="{{ config_popup_primary_btn_font_size }}" placeholder="ex.: 18">
+                    </div>
+                  </div>
+
+                  <!-- *********************** BOTÃO SECUNDÁRIO ************************ -->
+
+                  <hr>
+                  <div class="col-sm-12">
+                    <h3>
+                      Botão secundário
+                    </h3>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="Ao ativar esta opção, o popup exibirá um botão que, ao ser clicado, mantém restrito o acesso ao site e redireciona o usuário para um local especificado. Após o tempo informado no campo 'intervalo', o popup será exibido novamente para o usuário.""></span></label>
+                    <div class="col-sm-10">
+                      <div class="checkbox">
+                          <input type="checkbox" name="config_popup_show_secondary_btn" {{ config_popup_show_secondary_btn == 'on' ? 'checked' : '' }} />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="popup_secondary_btn_bg">
+                      Cor de fundo do botão secundário
+                      <span data-toggle="tooltip" title="Caso em branco, o valor padrão será usado (#262626)"></span>
+                    </label>
+                    <div class="col-sm-10">
+                      <input type="text" name="config_popup_secondary_btn_bg" id="popup_secondary_btn_bg" class="form-control" value="{{ config_popup_secondary_btn_bg }}" placeholder="ex.: green ou #262626">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="popup_secondary_btn_color">
+                      Cor da fonte do botão secundário
+                      <span data-toggle="tooltip" title="Caso em branco, o valor padrão será usado (#fff)"></span>
+                    </label>
+                    <div class="col-sm-10">
+                      <input type="text" name="config_popup_secondary_btn_color" id="popup_secondary_btn_color" class="form-control" value="{{ config_popup_secondary_btn_color }}" placeholder="ex.: white ou #fff">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="popup_secondary_btn_text">
+                      Texto do botão secundário
+                      <span data-toggle="tooltip" title="Caso em branco, o valor padrão será usado (SIM)"></span>
+                    </label>
+                    <div class="col-sm-10">
+                      <input type="text" name="config_popup_secondary_btn_text" id="popup_secondary_btn_text" class="form-control" value="{{ config_popup_secondary_btn_text }}" placeholder="ex.: Não">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="popup_secondary_btn_width">
+                      Largura do botão secundário (px)
+                      <span data-toggle="tooltip" title="Caso em branco, o valor padrão será usado (144px)"></span>
+                    </label>
+                    <div class="col-sm-10">
+                      <input type="text" name="config_popup_secondary_btn_width" id="popup_secondary_btn_width" class="form-control" value="{{ config_popup_secondary_btn_width }}" placeholder="ex.: 200">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="popup_secondary_btn_height">
+                      Altura do botão secundário (px)
+                      <span data-toggle="tooltip" title="Caso em branco, o valor padrão será usado (60px)"></span>
+                    </label>
+                    <div class="col-sm-10">
+                      <input type="text" name="config_popup_secondary_btn_height" id="popup_secondary_btn_height" class="form-control" value="{{ config_popup_secondary_btn_height }}" placeholder="ex.: 100">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="popup_secondary_btn_border_radius">
+                      Arredondamento das bordas do botão secundário (px)
+                      <span data-toggle="tooltip" title="Caso em branco, o valor padrão será usado (0px)"></span>
+                    </label>
+                    <div class="col-sm-10">
+                      <input type="text" name="config_popup_secondary_btn_border_radius" id="popup_secondary_btn_border_radius" class="form-control" value="{{ config_popup_secondary_btn_border_radius }}" placeholder="ex.: 5">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="popup_secondary_btn_font_size">
+                      Tamanho da fonte do botão secundário (px)
+                      <span data-toggle="tooltip" title="Caso em branco, o valor padrão será usado (24px)"></span>
+                    </label>
+                    <div class="col-sm-10">
+                      <input type="text" name="config_popup_secondary_btn_font_size" id="popup_secondary_btn_font_size" class="form-control" value="{{ config_popup_secondary_btn_font_size }}" placeholder="ex.: 18">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="popup_secondary_btn_redirect">
+                      Redirecionamento do botão secundário (px)
+                    </label>
+                    <div class="col-sm-10">
+                      <input type="text" name="config_popup_secondary_btn_redirect" id="popup_secondary_btn_redirect" class="form-control" value="{{ config_popup_secondary_btn_redirect }}" placeholder="ex.: https://google.com">
+                    </div>
+                  </div>
+
+                </div>
+            ]]>
+            </add>
+        </operation>
+
+    </file>
+
+    <file path="admin/controller/setting/setting.php">
+        <operation>
+            <search><![CDATA[$this->load->model('tool/image');]]></search>
+            <add position="after"><![CDATA[
+
+              if (isset($this->request->post['config_popup_name'])) {
+                $data['config_popup_name'] = $this->request->post['config_popup_name'];
+              } else {
+                $data['config_popup_name'] = $this->config->get('config_popup_name');
+              }
+
+              if (isset($this->request->post['config_popup_enabled'])) {
+                $data['config_popup_name'] = $this->request->post['config_popup_enabled'];
+              } else {
+                $data['config_popup_enabled'] = $this->config->get('config_popup_enabled');
+              }
+
+              if (isset($this->request->post['config_popup_interval'])) {
+                $data['config_popup_interval'] = $this->request->post['config_popup_interval'];
+              } else {
+                $data['config_popup_interval'] = $this->config->get('config_popup_interval');
+              }
+
+              if (isset($this->request->post['config_popup_width'])) {
+                  $data['config_popup_width'] = $this->request->post['config_popup_width'];
+              } else {
+                $data['config_popup_width'] = 100;
+              }
+
+              if (isset($this->request->post['config_popup_height'])) {
+                  $data['config_popup_height'] = $this->request->post['config_popup_height'];
+              } else {
+                $data['config_popup_height'] = 100;
+              }
+
+              if (isset($this->request->post['config_popup_image'])) {
+                $data['config_popup_image'] = $this->request->post['config_popup_image'];
+              } else {
+                $data['config_popup_image'] = $this->config->get('config_popup_image');
+              }
+
+              if (isset($this->request->post['config_popup_image']) && is_file(DIR_IMAGE . $this->request->post['config_popup_image'])) {
+                $data['popup_image'] = $this->model_tool_image->resize($this->request->post['config_popup_image'], $data['config_popup_width'], $data['config_popup_height']);
+              } elseif ($this->config->get('config_popup_image') && is_file(DIR_IMAGE . $this->config->get('config_popup_image'))) {
+                $data['popup_image'] = $this->model_tool_image->resize($this->config->get('config_popup_image'), $data['config_popup_width'], $data['config_popup_height']);
+              } else {
+                $data['popup_image'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+              }
+
+              if (isset($this->request->post['config_popup_show_primary_btn'])) {
+                $data['config_popup_show_primary_btn'] = $this->request->post['config_popup_show_primary_btn'];
+              } else {
+                $data['config_popup_show_primary_btn'] = $this->config->get('config_popup_show_primary_btn');
+              }
+
+              if (isset($this->request->post['config_popup_primary_btn_bg'])) {
+                $data['config_popup_primary_btn_bg'] = $this->request->post['config_popup_primary_btn_bg'];
+              } else {
+                $data['config_popup_primary_btn_bg'] = $this->config->get('config_popup_primary_btn_bg');
+              }
+
+              if (isset($this->request->post['config_popup_primary_btn_color'])) {
+                $data['config_popup_primary_btn_color'] = $this->request->post['config_popup_primary_btn_color'];
+              } else {
+                $data['config_popup_primary_btn_color'] = $this->config->get('config_popup_primary_btn_color');
+              }
+
+              if (isset($this->request->post['config_popup_primary_btn_text'])) {
+                $data['config_popup_primary_btn_text'] = $this->request->post['config_popup_primary_btn_text'];
+              } else {
+                $data['config_popup_primary_btn_text'] = $this->config->get('config_popup_primary_btn_text');
+              }
+
+              if (isset($this->request->post['config_popup_primary_btn_width'])) {
+                $data['config_popup_primary_btn_width'] = $this->request->post['config_popup_primary_btn_width'];
+              } else {
+                $data['config_popup_primary_btn_width'] = $this->config->get('config_popup_primary_btn_width');
+              }
+
+              if (isset($this->request->post['config_popup_primary_btn_height'])) {
+                $data['config_popup_primary_btn_height'] = $this->request->post['config_popup_primary_btn_height'];
+              } else {
+                $data['config_popup_primary_btn_height'] = $this->config->get('config_popup_primary_btn_height');
+              }
+
+              if (isset($this->request->post['config_popup_primary_btn_border_radius'])) {
+                $data['config_popup_primary_btn_border_radius'] = $this->request->post['config_popup_primary_btn_border_radius'];
+              } else {
+                $data['config_popup_primary_btn_border_radius'] = $this->config->get('config_popup_primary_btn_border_radius');
+              }
+
+              if (isset($this->request->post['config_popup_primary_btn_font_size'])) {
+                $data['config_popup_primary_btn_font_size'] = $this->request->post['config_popup_primary_btn_font_size'];
+              } else {
+                $data['config_popup_primary_btn_font_size'] = $this->config->get('config_popup_primary_btn_font_size');
+              }
+
+              // ************************* BOTÃO SECUNDÁRIO *************************
+
+              if (isset($this->request->post['config_popup_show_secondary_btn'])) {
+                $data['config_popup_show_secondary_btn'] = $this->request->post['config_popup_show_secondary_btn'];
+              } else {
+                $data['config_popup_show_secondary_btn'] = $this->config->get('config_popup_show_secondary_btn');
+              }
+
+              if (isset($this->request->post['config_popup_secondary_btn_bg'])) {
+                $data['config_popup_secondary_btn_bg'] = $this->request->post['config_popup_secondary_btn_bg'];
+              } else {
+                $data['config_popup_secondary_btn_bg'] = $this->config->get('config_popup_secondary_btn_bg');
+              }
+
+              if (isset($this->request->post['config_popup_secondary_btn_color'])) {
+                $data['config_popup_secondary_btn_color'] = $this->request->post['config_popup_secondary_btn_color'];
+              } else {
+                $data['config_popup_secondary_btn_color'] = $this->config->get('config_popup_secondary_btn_color');
+              }
+
+              if (isset($this->request->post['config_popup_secondary_btn_text'])) {
+                $data['config_popup_secondary_btn_text'] = $this->request->post['config_popup_secondary_btn_text'];
+              } else {
+                $data['config_popup_secondary_btn_text'] = $this->config->get('config_popup_secondary_btn_text');
+              }
+
+              if (isset($this->request->post['config_popup_secondary_btn_width'])) {
+                $data['config_popup_secondary_btn_width'] = $this->request->post['config_popup_secondary_btn_width'];
+              } else {
+                $data['config_popup_secondary_btn_width'] = $this->config->get('config_popup_secondary_btn_width');
+              }
+
+              if (isset($this->request->post['config_popup_secondary_btn_height'])) {
+                $data['config_popup_secondary_btn_height'] = $this->request->post['config_popup_secondary_btn_height'];
+              } else {
+                $data['config_popup_secondary_btn_height'] = $this->config->get('config_popup_secondary_btn_height');
+              }
+
+              if (isset($this->request->post['config_popup_secondary_btn_border_radius'])) {
+                $data['config_popup_secondary_btn_border_radius'] = $this->request->post['config_popup_secondary_btn_border_radius'];
+              } else {
+                $data['config_popup_secondary_btn_border_radius'] = $this->config->get('config_popup_secondary_btn_border_radius');
+              }
+
+              if (isset($this->request->post['config_popup_secondary_btn_font_size'])) {
+                $data['config_popup_secondary_btn_font_size'] = $this->request->post['config_popup_secondary_btn_font_size'];
+              } else {
+                $data['config_popup_secondary_btn_font_size'] = $this->config->get('config_popup_secondary_btn_font_size');
+              }
+
+              if (isset($this->request->post['config_popup_secondary_btn_redirect'])) {
+                $data['config_popup_secondary_btn_redirect'] = $this->request->post['config_popup_secondary_btn_redirect'];
+              } else {
+                $data['config_popup_secondary_btn_redirect'] = $this->config->get('config_popup_secondary_btn_redirect');
+              }
+
+            ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="catalog/controller/common/footer.php">
+        <operation>
+            <search><![CDATA[return $this->load->view('common/footer', $data);]]></search>
+            <add position="before"><![CDATA[
+              $data['popup'] = json_encode([
+                'enabled' => $this->config->get('config_popup_enabled') == 'on' ? true : false,
+                'interval' => $this->config->get('config_popup_interval') != '' ? $this->config->get('config_popup_interval') : 180,
+                'image' => $this->config->get('config_popup_image'),
+                'show_primary_btn' => $this->config->get('config_popup_show_primary_btn') == 'on' ? true : false,
+                'primary_btn' => [
+                  'bg'            => $this->config->get('config_popup_primary_btn_bg') ? $this->config->get('config_popup_primary_btn_bg') : '#32a852',
+                  'color'         => $this->config->get('config_popup_primary_btn_color') ? $this->config->get('config_popup_primary_btn_color') : '#fff',
+                  'text'          => $this->config->get('config_popup_primary_btn_text') ? $this->config->get('config_popup_primary_btn_text') : 'SIM',
+                  'width'         => $this->config->get('config_popup_primary_btn_width') ? $this->config->get('config_popup_primary_btn_width') : '144',
+                  'height'        => $this->config->get('config_popup_primary_btn_height') ? $this->config->get('config_popup_primary_btn_height') : '60',
+                  'border_radius' => $this->config->get('config_popup_primary_btn_border_radius') ? $this->config->get('config_popup_primary_btn_border_radius') : '0',
+                  'font_size'     => $this->config->get('config_popup_primary_btn_font_size') ? $this->config->get('config_popup_primary_btn_font_size') : '24',
+                ],
+                'show_secondary_btn' => $this->config->get('config_popup_show_secondary_btn') == 'on' ? true : false,
+                'secondary_btn' => [
+                  'bg'            => $this->config->get('config_popup_secondary_btn_bg') ? $this->config->get('config_popup_secondary_btn_bg') : '#262626',
+                  'color'         => $this->config->get('config_popup_secondary_btn_color') ? $this->config->get('config_popup_secondary_btn_color') : '#fff',
+                  'text'          => $this->config->get('config_popup_secondary_btn_text') ? $this->config->get('config_popup_secondary_btn_text') : 'NÃO',
+                  'width'         => $this->config->get('config_popup_secondary_btn_width') ? $this->config->get('config_popup_secondary_btn_width') : '144',
+                  'height'        => $this->config->get('config_popup_secondary_btn_height') ? $this->config->get('config_popup_secondary_btn_height') : '60',
+                  'border_radius' => $this->config->get('config_popup_secondary_btn_border_radius') ? $this->config->get('config_popup_secondary_btn_border_radius') : '0',
+                  'font_size'     => $this->config->get('config_popup_secondary_btn_font_size') ? $this->config->get('config_popup_secondary_btn_font_size') : '24',
+                  'redirect'     => $this->config->get('config_popup_secondary_btn_redirect'),
+                ],
+              ]);
+            ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="catalog/view/theme/*/template/common/footer.twig">
+        <operation>
+            <search><![CDATA[</footer>]]></search>
+            <add position="before"><![CDATA[
+              <style type="text/css">
+                #popup_wrapper{
+                  position: fixed;
+                  top: 0; bottom: 0; left: 0; right: 0;
+                  z-index: 99999;
+
+                  width: 100vw;
+                  height: 100vh;
+
+                  background-color: rgba(0, 0, 0, .75);
+
+                  visibility: hidden;
+                  opacity: 0;
+
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+
+                  transition: opacity .5s;
+                }
+
+                #popup_image{
+                  max-height: 80vh;
+                  max-width: 90vw;
+
+                  border: 5px solid #fff;
+
+                  box-shadow: 10px 10px 20px #000;
+
+                  border-radius: 2px;
+                }
+
+                #popup_image_and_btns{
+                  position: relative;
+                }
+
+                #popup_btns_wrapper{
+                  position: absolute;
+                  bottom: 0; left: 0; right: 0;
+                  width: 100%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                }
+              </style>
+
+              <div id="popup_wrapper">
+                  <div id="popup_image_and_btns">
+                    <img src="" id="popup_image">
+                    <div id="popup_btns_wrapper"></div>
+                  </div>
+              </div>
+            ]]>
+            </add>
+        </operation>
+
+        <operation>
+            <search><![CDATA[{% for script in scripts %}]]></search>
+            <add position="before"><![CDATA[
+              <script type="text/javascript">
+                
+                window.onload = function(){
+                  const popup = JSON.parse('{{ popup }}')
+
+                  if(popup.enabled){
+
+                    if(popup.show_primary_btn){
+                      create_button(popup.interval, popup.secondary_btn, 'secondary')
+                    }
+
+                    if(popup.show_primary_btn){
+                      create_button(popup.interval, popup.primary_btn, 'primary')
+                    }
+
+                    if(!getCookie('popup_shown') || getCookie('popup_shown') === 'false'){
+                      show_popup(popup)
+                    }
+                  }
+                }
+
+                function show_popup(popup) {
+                  document.getElementById('popup_image').src = `${document.getElementsByTagName('base')[0].href}/image/${popup.image}`
+
+                  document.getElementById('popup_wrapper').style.visibility = 'visible'
+                  document.getElementById('popup_wrapper').style.opacity = '1'
+
+                  document.body.style.overflow = 'hidden'
+                }
+
+                function create_button(interval, {bg, color, text, width, height, border_radius, font_size, redirect}, type) {
+                  const c_button = type === 'primary' ? document.createElement('button') : document.createElement('a')
+
+                  c_button.style.cssText = `
+                    background-color: ${bg};
+                    color: ${color} !important;
+
+                    text-decoration: none !important;
+
+                    width: ${width}px;
+                    height: ${height}px;
+
+                    border: none;
+                    border-radius: ${border_radius}px;
+
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    text-align: center;
+                    font-size: ${font_size}px;
+
+                    margin: 2rem 1rem;
+                  `
+
+                  c_button.innerText = text
+
+                  if(type === 'primary'){
+                    c_button.addEventListener('click', function(){
+                      release_site(interval)
+                    }, true)
+                  }else{
+                    if(redirect){
+                      c_button.href = redirect
+                      c_button.setAttribute('target', '_blank')
+                    }else{
+                      c_button.href = document.getElementsByTagName('base')[0].href
+                    }
+                  }
+
+                  document.getElementById('popup_btns_wrapper').appendChild(c_button)
+                }
+
+                function release_site(interval) {
+                  document.getElementById('popup_image').src = ''
+
+                  document.getElementById('popup_wrapper').style.opacity = '0'
+                  setTimeout(function(){
+                    document.getElementById('popup_wrapper').style.visibility = 'hidden'
+                  },500)
+
+                  document.body.style.overflow = 'auto'
+
+                  setCookie('popup_shown', 'true', interval)
+                }
+
+                function setCookie(cname, cvalue, minutes) {
+                  var d = new Date();
+                  d.setTime(d.getTime() + (minutes*60*1000));
+                  var expires = "expires="+ d.toUTCString();
+                  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+                }
+
+                function getCookie(cname) {
+                  var name = cname + "=";
+                  var decodedCookie = decodeURIComponent(document.cookie);
+                  var ca = decodedCookie.split(';');
+                  for(var i = 0; i <ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                      c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                      return c.substring(name.length, c.length);
+                    }
+                  }
+                  return "";
+                }
+
+              </script>
+            ]]>
+            </add>
+        </operation>
+    </file>
+
+</modification>
